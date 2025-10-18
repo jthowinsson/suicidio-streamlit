@@ -46,7 +46,10 @@ y = data['target']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Cargar el modelo entrenado
-modelo = joblib.load("modelo.pkl")
+from pathlib import Path
+
+modelo_path = Path(__file__).resolve().parent.parent / "modelo.pkl"
+modelo = joblib.load(modelo_path)
 
 # Realizar predicciones y métricas
 y_pred = modelo.predict(X_test)
