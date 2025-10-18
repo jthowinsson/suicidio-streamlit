@@ -1153,4 +1153,3 @@ df_top10 = pd.DataFrame({
 df_top10['Porcentaje'] = (df_top10['Casos'] / total * 100).round(1).astype(str) + " %"
 
 st.dataframe(df_top10, use_container_width=True)
-
