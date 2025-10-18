@@ -5,3 +5,4 @@ matplotlib>=3.8
 altair>=5.2
 scikit-learn>=1.6
 geopy>=2.4
+plotly>=5.24
