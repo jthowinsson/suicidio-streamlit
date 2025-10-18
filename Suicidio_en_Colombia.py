@@ -3,51 +3,48 @@ import streamlit as st
 # Imagen en la barra lateral
 st.sidebar.image("images/Logo.png", use_container_width=True)
 
-# Título de la página
+st.title("Suicidio en Colombia (2015 - 2023)")
+st.subheader("Modelo de Clasificación XGBoost para el Mecanismo Causal de Suicidio en Colombia (2015–2023): Un Enfoque Predictivo")
 
-st.header("Introducción")
+st.write("Bienvenido, usa el menú lateral para navegar...")
 
-# Imagen de portada con leyenda
-st.image("images/Portada.png", caption="Campaña de prevención del suicidio, Colombia.", use_container_width=True)
+st.sidebar.info("Siempre puedes hablar • Proyecto Dataviz ©2025")
+
+st.header("Aproximación Conceptual")
+
+# Imagen conceptual
+st.image("images/Salud.png", caption="Imagen creada por IA Canva", use_container_width=True)
 
 st.markdown("""
-El suicidio es el acto deliberado mediante el cual una persona decide poner fin a su propia vida, constituyendo una problemática compleja que integra dimensiones psicológicas, sociales, culturales y biológicas. No existe una definición única y universal, pero en el ámbito de la salud pública y la psicología se reconoce como una acción autoinfligida con el propósito directo de provocar la muerte, bien sea de manera activa o pasiva [1,4,2].
+La conducta suicida es un fenómeno complejo, con diferentes implicaciones, tanto psicopatológicas como existenciales, sociales y morales, por lo que resulta complicado dar una definición única y universal a la misma. Diversos autores han tratado de definir la conducta suicida (Durkheim, Schneider), pero es tal vez Rojas (1984) el que establece un concepto más operativo:
 
-El suicidio es uno de los principales problemas de salud pública a nivel mundial y está íntimamente vinculado con la salud mental. La evidencia científica señala que la mayoría de los suicidios están precedidos por trastornos mentales, especialmente depresión, trastorno bipolar, esquizofrenia, trastornos de personalidad y abuso de sustancias psicoactivas. De hecho, hasta el 95% de quienes mueren por suicidio presentan un diagnóstico psiquiátrico previo [3,4].
+> “Se entiende por suicidio aquella conducta o conjunto de conductas que, dirigidas por el propio sujeto, conducen a la muerte (suicidio consumado) o a una situación de gravedad mortal (suicidio frustrado), bien de forma activa o pasiva”.
 
-Según la Organización Mundial de la Salud, más de 720,000 personas fallecen anualmente por esta causa, ubicándose como una de las principales causas de muerte en adolescentes y adultos jóvenes [1,2]. Los intentos de suicidio y la ideación suicida — pensamientos recurrentes de autolesión o muerte — forman parte del espectro del comportamiento suicida y tienen una base principalmente psicológica y emocional, relacionada con alteraciones en la salud mental.
+Es decir, que dentro de la conducta suicida no sólo hay que contemplar la consumación del suicidio, sino también la cantidad de matices autoagresivos existentes en la misma y que necesariamente no llevan a la muerte a la persona pero que marcan a partir de este momento su propia existencia. 
 
-Existen múltiples factores de riesgo que contribuyen al suicidio: aislamiento social, desesperanza, problemas económicos, crisis familiares o personales y falta de apoyo emocional, todos estrechamente asociados con la desestabilización de la salud mental. La literatura reporta que el suicidio está rodeado de estigma y tabúes sociales, dificultando su prevención. Sin embargo, debe entenderse como un evento prevenible, abordando adecuadamente la salud mental mediante políticas integrales, intervenciones basadas en evidencia y fortalecimiento de factores protectores en la comunidad [2,1,3].
-
-Por su magnitud y multidimensionalidad, el suicidio exige un enfoque científico, interdisciplinario y ético desde la perspectiva de la salud mental y la salud pública.
+Dos son los elementos que integran a la conducta suicida, el “Criterio auto infligido”, es decir la propia acción violenta, y el “Criterio de propósito”, que hace referencia a la finalidad de muerte. La presencia de ambos criterios o la ausencia de uno de ellos determinan las diferentes formas con que puede presentarse la conducta suicida.
 """)
 
-# Subtítulo y contexto específico de Colombia
-
-st.subheader("Contexto del suicidio en Colombia")
-
-st.markdown("""
-En Colombia, el suicidio ha surgido como una preocupación creciente en la última década, reflejando una realidad social y de salud mental que afecta especialmente a jóvenes y poblaciones vulnerables. Entre los años 2015 y 2023, los datos oficiales registraron un aumento en las tasas de suicidio, con un enfoque particular en grupos como los jóvenes de 18 a 28 años y comunidades indígenas, donde las dificultades para acceder a servicios de salud mental agravan el problema [5].
-
-Las cifras oficiales de Colombia resaltan que este fenómeno no solo es un reflejo de problemas individuales, sino que también está influenciado por factores sociales como la violencia, la desigualdad, el desplazamiento forzado y las secuelas económicas y emocionales de la pandemia. Además, la estigmatización alrededor de la salud mental y el suicidio dificulta la búsqueda de ayuda y la implementación efectiva de políticas de prevención.
-
-Este contexto colombiano particular, caracterizado por complejidades sociales y desigualdades regionales, refuerza la necesidad de estudios que permitan explicar y predecir el suicidio dentro del país, para así apoyar estrategias públicas y comunitarias más sensibles y eficaces.
-
-Esta visión desde los datos oficiales y el contexto social permite anclar tu análisis en la realidad colombiana actual, subrayando la importancia de modelos estadísticos que puedan contribuir a la prevención y atención personalizada en salud mental.
-""")
-
-st.subheader("Objetivo general")
+# Imagen sobre la conducta auto infligida
+st.image("images/Conducta_AutoInflingido.jpeg", caption="Representación de Conducta AutoInfligida", use_container_width=True)
 
 st.markdown("""
-Estimar la asociación entre características sociodemográficas, contextuales y la probabilidad de que el mecanismo de suicidio sea “generadores de asfixia” (vs otros mecanismos) en Colombia durante 2015–2023.
-""")
+**Parasuicidio:**  
+También llamado “Gesto Suicida”. Es el conjunto de conductas voluntarias e intencionales que el sujeto pone en marcha con el fin de producirse daño físico y cuyas consecuencias son el dolor, la desfiguración, la mutilación o el daño de alguna función o parte de su cuerpo, pero sin la intención de acabar con su vida.
+Se incluyen aquí entre otros, los cortes en las muñecas, las sobredosis de medicamentos sin intención de muerte y las quemaduras. La intención en el Parasuicidio o Gesto Suicida no es por lo tanto la muerte, sino que tiene que ver con el deseo de conseguir algo (más cariño, que la pareja no le abandone, un empleo, etc.) para lo cual la persona cree que no dispone de otro tipo de recursos personales. 
 
-st.markdown("### Objetivos específicos")
+**Ideas suicidas:**  
+La persona contempla el suicidio como solución real a sus problemas, si bien aún no se ha producido un daño físico contra sí mismo. No existe aún una idea clara ni de cómo ni de cuando, pero entre las alternativas que puede tener para solucionar su situación problemática ya está presente el suicidio. 
 
-st.markdown("""
-- Caracterizar los mecanismos de suicidio registrados en Colombia entre 2015 y 2023 según variables sociodemográficas y contextuales.
-- Construir una variable dependiente binaria para analizar el mecanismo predominante (generadores de asfixia vs otros).
-- Estimar un modelo de regresión logística binaria para identificar factores asociados al uso de generadores de asfixia como mecanismo de suicidio.
-- Evaluar el ajuste y desempeño del modelo mediante métricas de discriminación y calibración.
-- Explorar la robustez del modelo a través de análisis de sensibilidad e interacciones entre variables clave.
+**Crisis suicida:**  
+De entre todas las alternativas que la persona disponía para solucionar la situación problemática, el suicidio comienza a tomar protagonismo. La idea ha tomado cuerpo y se activan a nivel psíquico un conjunto de impulsos de muerte, que le llevan a establecer un plan suicida.
+
+**Suicidio consumado:**  
+Cuando el Criterio de Propósito o de Muerte y el Criterio Auto Infligido se suman, se establece un plan de acción con diferentes niveles de elaboración. Si la puesta en práctica de este plan tiene “éxito” conduce a la muerte del sujeto.
+
+**Suicidio frustrado:**  
+Es un acto suicida que no conlleva a la muerte de la persona porque determinadas circunstancias externas, muchas veces casuales y siempre no previstas acontecen en el momento crítico. No es por lo tanto un Parasuicidio, ya que en el Suicidio Frustrado sí que hay una voluntad real de producirse la propia muerte. Sirva como ejemplo el caer sobre las cuerdas de un tendedero al arrojarse por una ventana.
+
+**Tentativa de suicidio:**  
+Toda conducta que busca la propia muerte pero para lograr el propósito la persona no emplea los medios adecuados y por lo tanto el sujeto no consigue acabar con su vida. Es un intento que puede fallar por múltiples causas, desde no tener una firme decisión de suicidarse hasta por el empleo de medios “blandos”. Existe el “propósito de muerte” pero el “criterio auto inflingido” no es el adecuado.
 """)
